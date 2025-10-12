@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Plan = () => {
     const items = [
         { title: 'Janine & Peter', description: 'Eerste kindje', image: '../images/female-male.png' },
