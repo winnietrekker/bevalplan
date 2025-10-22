@@ -101,12 +101,12 @@ function DraggableItem({ id, item }) {
     : item.position;
 
   return (
-    <PreviewTile 
-      option={{ id, label: item.label, image: item.image, alt: item.alt }} 
+    <PreviewTile
+      option={{ ...item, id }}
       ref={setNodeRef}
       {...listeners}
       {...attributes}
-      style={{ 
+      style={{
         width: 100,
         height: 100,
         borderRadius: 8,

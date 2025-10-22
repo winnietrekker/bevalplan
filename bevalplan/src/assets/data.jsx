@@ -12,6 +12,7 @@ const data = [
                 image: "images/bubbel.png", 
                 alt: "bubbel",
                 position: {x: 0, y: 0},
+                hidden: false,
             },
             { 
                 id: "prefGedimdLicht", 
@@ -19,6 +20,7 @@ const data = [
                 image: "images/gedimd-licht.png", 
                 alt: "gedimd-licht",
                 position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefEigenMuziek", 
@@ -26,6 +28,7 @@ const data = [
                 image: "images/eigen-muziek.png", 
                 alt: "eigen-muziek",
                 position: {x: 0, y: 0},
+                hidden: true,
             },
         ]
     },
@@ -42,6 +45,7 @@ const data = [
                 image: "images/bubbel.png", 
                 alt: "bubbel",
                 position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefGedimdLicht2", 
@@ -49,13 +53,15 @@ const data = [
                 image: "images/gedimd-licht.png", 
                 alt: "gedimd-licht",
                 position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefEigenMuziek2", 
                 label: "eigen muziek", 
                 image: "images/eigen-muziek.png", 
                 alt: "eigen-muziek",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
         ]
     },
@@ -71,21 +77,24 @@ const data = [
                 label: "laat me in mijn bubbel", 
                 image: "images/bubbel.png", 
                 alt: "bubbel",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefGedimdLicht3", 
                 label: "gedimd licht", 
                 image: "images/gedimd-licht.png", 
                 alt: "gedimd-licht",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefEigenMuziek3", 
                 label: "eigen muziek", 
                 image: "images/eigen-muziek.png", 
                 alt: "eigen-muziek",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
         ]
     },
@@ -101,21 +110,24 @@ const data = [
                 label: "laat me in mijn bubbel", 
                 image: "images/bubbel.png", 
                 alt: "bubbel",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefGedimdLicht4", 
                 label: "gedimd licht", 
                 image: "images/gedimd-licht.png", 
                 alt: "gedimd-licht",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
             { 
                 id: "prefEigenMuziek4", 
                 label: "eigen muziek", 
                 image: "images/eigen-muziek.png", 
                 alt: "eigen-muziek",
-                position: {x: 0, y: 0}
+                position: {x: 0, y: 0},
+                hidden: true,
             },
         ]
     },
