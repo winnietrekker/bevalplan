@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   DndContext,
   useDraggable,
@@ -6,6 +6,7 @@ import {
 } from "@dnd-kit/core";
 import preview_items from "./preview_items.jsx"
 import PreviewTile from "./Cards/PreviewTile.jsx";
+import { MyContext } from "../context/MyContext.jsx";
 
 
 const GRID_SIZE = 25;
@@ -30,13 +31,7 @@ function snapToGridAndClamp(x, y, grid = GRID_SIZE) {
 }
 
 export default function GridDragField() {
-  // const initialItems = [
-  //   { id: 'draggable-0', position: { x: 0, y: 0 } },
-  //   { id: 'draggable-1', position: { x: 250, y: 0 } },
-  //   { id: 'draggable-2', position: { x: 0, y: 250 } },
-  // ];
-  const initialItems = preview_items.options;
-  const [items, setItems] = useState(initialItems);
+  const {items, setItems} = useContext(MyContext);
 
   const handleDragEnd = (event) => {
     const { active, delta } = event;
