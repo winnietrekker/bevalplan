@@ -4,7 +4,6 @@ import {
   useDraggable,
   useDroppable
 } from "@dnd-kit/core";
-import preview_items from "./preview_items.jsx"
 import PreviewTile from "./Cards/PreviewTile.jsx";
 import { MyContext } from "../context/MyContext.jsx";
 
