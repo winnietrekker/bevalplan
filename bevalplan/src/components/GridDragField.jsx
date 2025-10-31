@@ -6,6 +6,7 @@ import {
 } from "@dnd-kit/core";
 import PreviewTile from "./Cards/PreviewTile.jsx";
 import { MyContext } from "../context/MyContext.jsx";
+import PreviewTitle from "./PreviewTitle.jsx";
 
 
 const GRID_SIZE = 25;
@@ -56,6 +57,9 @@ export default function GridDragField() {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <DroppableField>
+        {data.map((dataItem) =>
+          <PreviewTitle key={dataItem.title.id} title={dataItem.title} />
+        )}
         {data.map((dataItem) =>
           dataItem.options.map((option) => (
             <DraggableItem key={option.id} id={option.id} item={option} />
