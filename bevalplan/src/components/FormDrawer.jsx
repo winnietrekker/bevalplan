@@ -7,14 +7,14 @@ import { MyContext } from "../context/MyContext.jsx";
 
 
 export default function FormDrawer() {
-  const { data, setData, items, setItems } = useContext(MyContext);
+  const { data, setData } = useContext(MyContext);
   return (
     <div className="col-12 col-lg-4 p-4 form-column">
       <h1 className="mb-4">Maak mijn geboorteplan</h1>
       <CardWrapper cardBody={<ParentsCard />} />
       <CardWrapper cardBody={<EssentialsCard />} />
-      {data.map((item, idx) => (
-        <CardWrapper key={idx} cardBody={<TilesCard item={item} />} />
+      {data.map((option, idx) => (
+        <CardWrapper key={idx} cardBody={<TilesCard item={option} setData={setData} />} />
       ))}
     </div>
   );

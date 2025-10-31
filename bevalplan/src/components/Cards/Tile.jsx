@@ -1,7 +1,16 @@
-export default function Tile({ option }) {
+export default function Tile({ option, setData }) {
     function handleClick() {
-        // Do something when the tile is clicked
-        console.log(`Tile with id ${option.id} clicked`);
+        setData(prevData =>
+            prevData.map(data => ({
+                ...data,
+                options: data.options.map(opt =>
+                    opt.id === option.id
+                        ? { ...opt, hidden: !opt.hidden }
+                        : opt
+                )
+            }))
+        );
+        console.log("Toggled hidden for:", option.id);
     }
     return (
         <div className="icon-toggle-container mb-3" onClick={handleClick}>
