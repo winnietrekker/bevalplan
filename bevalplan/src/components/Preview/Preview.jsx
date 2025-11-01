@@ -25,9 +25,7 @@ export default function Preview() {
             <div className="col-12 col-lg-8 preview-column">
                 <div className="a4-wrapper">
                     <div className="a4-document p-5 shadow" ref={containerRef}>
-                        <DndContext>
-                            <GridDragField />
-                        </DndContext>
+                        <GridDragField />
                     </div>
                 </div>
             </div>
