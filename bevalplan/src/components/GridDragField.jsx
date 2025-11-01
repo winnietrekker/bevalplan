@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   DndContext,
   useDraggable,
   useDroppable
 } from "@dnd-kit/core";
-import preview_items from "./preview_items.jsx"
 import PreviewTile from "./Cards/PreviewTile.jsx";
+import { MyContext } from "../context/MyContext.jsx";
+import PreviewTitle from "./PreviewTitle.jsx";
 
 
 const GRID_SIZE = 25;
@@ -30,34 +31,40 @@ function snapToGridAndClamp(x, y, grid = GRID_SIZE) {
 }
 
 export default function GridDragField() {
-  // const initialItems = [
-  //   { id: 'draggable-0', position: { x: 0, y: 0 } },
-  //   { id: 'draggable-1', position: { x: 250, y: 0 } },
-  //   { id: 'draggable-2', position: { x: 0, y: 250 } },
-  // ];
-  const initialItems = preview_items.options;
-  const [items, setItems] = useState(initialItems);
+  const {data, setData} = useContext(MyContext);
 
   const handleDragEnd = (event) => {
     const { active, delta } = event;
-    setItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === active.id) {
-          const newX = item.position.x + delta.x;
-          const newY = item.position.y + delta.y;
-          return { ...item, position: snapToGridAndClamp(newX, newY) };
-        }
-        return item;
-      })
+    console.log("Drag ended for:", active.id, "with delta:", delta);
+    setData(prevData =>
+      prevData.map(data => ({
+        ...data,
+        options: data.options.map(option => {
+          if (option.id === active.id) {
+            const newX = option.position.x + delta.x;
+            const newY = option.position.y + delta.y;
+            return {
+              ...option,
+              position: snapToGridAndClamp(newX, newY)
+            };
+          }
+          return option;
+        })
+      }))
     );
   };
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <DroppableField>
-        {items.map((item) => (
-          <DraggableItem key={item.id} id={item.id} item={item} />
-        ))}
+        {data.map((dataItem) =>
+          <PreviewTitle key={dataItem.title.id} title={dataItem.title} />
+        )}
+        {data.map((dataItem) =>
+          dataItem.options.map((option) => (
+            <DraggableItem key={option.id} id={option.id} item={option} />
+          ))
+        )}
       </DroppableField>
     </DndContext>
   );
@@ -101,17 +108,8 @@ function DraggableItem({ id, item }) {
     : item.position;
 
   return (
-    // <PreviewTile 
-    //   option={{ id, label: item.label, image: item.image, alt: item.alt }} 
-    //   ref={setNodeRef}
-    //   {...listeners}
-    //   {...attributes}
-    //   style={{
-    //     position: "absolute",
-    //     cursor: "grab"
-    //   }}
-    // />
-    <div
+    <PreviewTile
+      option={{ ...item, id }}
       ref={setNodeRef}
       {...listeners}
       {...attributes}
@@ -124,9 +122,6 @@ function DraggableItem({ id, item }) {
         top: translate.y,
         cursor: "grab",
       }}
-    >
-      <img src={item.image} alt={item.alt} />
-      <span>{item.label}</span>
-    </div>
+    />
   );
 }

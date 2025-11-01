@@ -70,7 +70,7 @@
 
 /* 3. Style de ACTIEVE (aangevinkte) staat */
 /* de CSS-regel wordt toegepast ALS de verborgen input is aangevinkt */
-.icon-toggle-input:checked + .icon-toggle-label {
+.icon-toggle-label-show {
     background-color: #F0F8F8; /* Lichte achtergrond */
     border-color: var(--bp-lighter-teal); /* Accentkleur */
     color: var(--bp-dark-teal); /* Tekst en icoonkleur */
