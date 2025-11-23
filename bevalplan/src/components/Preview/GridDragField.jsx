@@ -9,7 +9,7 @@ import { MyContext } from "../../context/MyContext.jsx";
 import PreviewTitle from "./PreviewTitle.jsx";
 
 
-const GRID_SIZE = 25;
+const GRID_SIZE = 10;
 const GRID_WIDTH = 950;
 const GRID_HEIGHT = 675;
 const TILE_WIDTH = 200;
@@ -31,7 +31,7 @@ function snapToGridAndClamp(x, y, grid = GRID_SIZE) {
 }
 
 export default function GridDragField() {
-  const {data, setData} = useContext(MyContext);
+  const {data, setData, otherData, setOtherData} = useContext(MyContext);
 
   const handleDragEnd = (event) => {
     const { active, delta } = event;
@@ -51,17 +51,42 @@ export default function GridDragField() {
         })
       }))
     );
+    setOtherData(prevData =>
+      prevData.map(data => ({
+        ...data,
+        values: data.values.map(value => {
+          console.log("Checking value:", value.id, "against active:", active.id);
+          if (value.id === active.id) {
+            const newX = value.position.x + delta.x;
+            const newY = value.position.y + delta.y;
+            return {
+              ...value,
+              position: snapToGridAndClamp(newX, newY)
+            };
+          }
+          return value;
+        })
+      }))
+    );
   };
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <DroppableField>
+        {otherData.map((dataItem) =>
+          <PreviewTitle key={dataItem.title.id} title={dataItem.title} />
+        )}
+        {otherData.map((dataItem) =>
+          dataItem.values.map((value) => (
+            <DraggableOption key={value.id} id={value.id} item={value} />
+          ))
+        )}
         {data.map((dataItem) =>
           <PreviewTitle key={dataItem.title.id} title={dataItem.title} />
         )}
         {data.map((dataItem) =>
           dataItem.options.map((option) => (
-            <DraggableItem key={option.id} id={option.id} item={option} />
+            <DraggableOption key={option.id} id={option.id} item={option} />
           ))
         )}
       </DroppableField>
@@ -94,7 +119,7 @@ function DroppableField({ children }) {
   );
 }
 
-function DraggableItem({ id, item }) {
+function DraggableOption({ id, item }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
   });
