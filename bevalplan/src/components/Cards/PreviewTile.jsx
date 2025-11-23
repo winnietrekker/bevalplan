@@ -4,7 +4,6 @@ const PreviewTile = React.forwardRef(function PreviewTile(
     { option, style = {}, ...props },
     ref
 ) {
-    // To hide a div, you can set its style to { display: "none" }
     return (
         <div
             className="icon-toggle-container mb-3"

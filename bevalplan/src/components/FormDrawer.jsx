@@ -7,7 +7,7 @@ import { MyContext } from "../context/MyContext.jsx";
 
 
 export default function FormDrawer() {
-  const { data, setData, name, setName, mostImportant, setMostImportant } = useContext(MyContext);
+  const { data, setData, otherData, setOtherData } = useContext(MyContext);
 
   return (
     <div className="col-12 col-lg-4 p-4 form-column">
